@@ -28,3 +28,15 @@ func BindVideoResponse(video model.Video) Response {
 		Data: BindVideo(video),
 	}
 }
+
+// 视频列表
+func BindVideosResponse(videos []model.Video) Response {
+	var videoList []Video
+	for _, item := range(videos) {
+		video := BindVideo(item)
+		videoList = append(videoList, video)
+	}
+	return Response {
+		Data: videoList,
+	}
+}

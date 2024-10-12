@@ -11,8 +11,8 @@ import (
 )
 
 type CreateVideoService struct {
-	Title string `form: "title" json:"title" binding:"required,min=2,max=40"`
-	Info string `form: "info" json: "info" binding:"required, max=300`
+	Title string `form:"title" json:"title" binding:"required,min=2,max=40"`
+	Info string `form:"info" json:"info" binding:"required,max=300"`
 }
 
 func (service *CreateVideoService) Create() serializer.Response {
@@ -25,6 +25,7 @@ if err != nil {
 	return serializer.Response {
 		Code: 50001,
 		Msg: "视频创建失败",
+		Error: err.Error(),
 	}
 }
 	return serializer.BindVideoResponse(video)
